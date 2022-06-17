@@ -1,10 +1,15 @@
 <template>
-  <h1>Main<small>Component</small></h1>
+  <ToolbarComp />
+  <!-- <h1>Main<small>Component</small></h1> -->
 </template>
 
-<script>
+<script lang="ts">
+import ToolbarComp from "./custom_components/ToolbarComp.vue";
 export default {
   name: "MainDisplay",
+  components: {
+    ToolbarComp,
+  },
 };
 </script>
 
