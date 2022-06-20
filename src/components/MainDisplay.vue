@@ -4,7 +4,7 @@
 </template>
 
 <script lang="ts">
-import ToolbarComp from "./custom_components/ToolbarComp.vue";
+import ToolbarComp from "./custom_components/toolbar/ToolbarComp.vue";
 export default {
   name: "MainDisplay",
   components: {

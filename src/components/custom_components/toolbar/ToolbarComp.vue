@@ -1,8 +1,15 @@
 <template>
   <div class="toolbar-container">
     <div class="toolbar-container-inner">
-      <ul class="toolbar-elements-list-inner">
-        <li v-for="(elem, i) in navbarElems" :key="`${elem}-${i}`">
+      <ul class="toolbar-elements-list">
+        <li v-for="(elem, i) in navbarElemsLeft" :key="`${elem}-${i}`">
+          {{ elem }}
+        </li>
+        <li
+          v-for="(elem, i) in navbarElemsRight"
+          :key="`${elem}-${i}`"
+          :style="i === 0 ? 'margin-left: auto' : ''"
+        >
           {{ elem }}
         </li>
       </ul>
@@ -13,11 +20,6 @@
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
 
-interface NavbarElements {
-  label?: string;
-  iconsrc?: string;
-  id: string;
-}
 export default defineComponent({
   data() {
     return {
@@ -53,6 +55,14 @@ export default defineComponent({
     order: 0;
     align-self: stretch;
     flex-grow: 0;
+    .toolbar-elements-list {
+      border: 2px solid red;
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      list-style-type: none;
+      align-items: center;
+    }
   }
 }
 </style>
