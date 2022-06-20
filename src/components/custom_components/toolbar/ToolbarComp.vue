@@ -3,14 +3,18 @@
     <div class="toolbar-container-inner">
       <ul class="toolbar-elements-list">
         <li v-for="(elem, i) in navbarElemsLeft" :key="`${elem}-${i}`">
-          {{ elem }}
+          <ToolbarIcon :toolbarIconProps="elem" />
+        </li>
+        <li class="logo-list-item">
+          <h1>Moen Marin</h1>
+          <font-awesome-icon icon="anchor" size="2x" />
         </li>
         <li
           v-for="(elem, i) in navbarElemsRight"
           :key="`${elem}-${i}`"
           :style="i === 0 ? 'margin-left: auto' : ''"
         >
-          {{ elem }}
+          <ToolbarIcon :toolbarIconProps="elem" />
         </li>
       </ul>
     </div>
@@ -19,13 +23,44 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-
+import { ToolbarIconI } from "./ToolbarInterface";
+import ToolbarIcon from "./ToolbarIcon.vue";
 export default defineComponent({
   data() {
     return {
-      navbarElemsLeft: ["1", "2", "3"] as string[],
-      navbarElemsRight: ["1", "2", "3"] as string[],
+      navbarElemsLeft: [
+        {
+          label: "expand-sidebar",
+          iconsrc: "bars",
+          id: "topbar-elem-1",
+        },
+      ] as ToolbarIconI[],
+      navbarElemsRight: [
+        {
+          label: "bell",
+          iconsrc: "bell",
+          id: "topbar-elem-2",
+        },
+        {
+          label: "profile",
+          iconsrc: "user",
+          id: "topbar-elem-3",
+        },
+        {
+          label: "profile",
+          iconsrc: "moon",
+          id: "topbar-elem-3",
+        },
+        {
+          label: "profile",
+          iconsrc: "border-all",
+          id: "topbar-elem-4",
+        },
+      ] as ToolbarIconI[],
     };
+  },
+  components: {
+    ToolbarIcon,
   },
   computed: {},
 });
@@ -33,21 +68,18 @@ export default defineComponent({
 
 <style lang="scss">
 .toolbar-container {
-  // border: 1px solid hotpink;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 10px;
-
   position: absolute;
   height: 48px;
   left: 0px;
   right: 0px;
   top: 0px;
   .toolbar-container-inner {
-    // border: 1px solid salmon;
-    width: 1920px;
+    width: 100%;
     height: 48px;
     background: #fcfcfc;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -56,12 +88,21 @@ export default defineComponent({
     align-self: stretch;
     flex-grow: 0;
     .toolbar-elements-list {
-      border: 2px solid red;
       display: flex;
       flex-direction: row;
       height: 100%;
       list-style-type: none;
       align-items: center;
+      li {
+        flex-basis: 3%;
+      }
+      .logo-list-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 12px;
+        flex-basis: 7%;
+      }
     }
   }
 }

@@ -1,23 +1,29 @@
 <template>
-  <ToolbarComp />
-  <!-- <h1>Main<small>Component</small></h1> -->
+  <div class="main-site">
+    <Toolbar />
+    <Sidebar />
+  </div>
 </template>
 
 <script lang="ts">
-import ToolbarComp from "./custom_components/toolbar/ToolbarComp.vue";
+import { Toolbar } from "./custom_components/toolbar/";
+import { Sidebar } from "./custom_components/sidebar/";
 export default {
   name: "MainDisplay",
   components: {
-    ToolbarComp,
+    Toolbar,
+    Sidebar,
   },
 };
 </script>
 
 <style lang="scss">
-h1 {
-  color: red;
-  small {
-    color: blue;
-  }
+.main-site {
+  border: 1px solid red;
+  position: relative;
+  min-width: 1920px;
+  min-height: 1080px;
+  height: 100%;
+  width: 100%;
 }
 </style>
