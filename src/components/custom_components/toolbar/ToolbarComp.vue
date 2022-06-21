@@ -101,7 +101,10 @@ export default defineComponent({
         flex-direction: row;
         justify-content: space-around;
         padding: 12px;
-        flex-basis: 7%;
+        flex-basis: 8%;
+        svg {
+          margin-top: 3px;
+        }
       }
     }
   }
