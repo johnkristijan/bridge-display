@@ -3,7 +3,10 @@
     <div class="toolbar-container-inner">
       <ul class="toolbar-elements-list">
         <li v-for="(elem, i) in navbarElemsLeft" :key="`${elem}-${i}`">
-          <ToolbarIcon :toolbarIconProps="elem" />
+          <ToolbarIcon
+            :toolbarIconProps="elem"
+            @click="topBarElemClick(elem)"
+          />
         </li>
         <li class="logo-list-item">
           <h1>Moen Marin</h1>
@@ -63,6 +66,13 @@ export default defineComponent({
     ToolbarIcon,
   },
   computed: {},
+  methods: {
+    topBarElemClick(toolbarButton: ToolbarIconI) {
+      if (toolbarButton.label === "expand-sidebar") {
+        this.$emit("toggleSidebar");
+      }
+    },
+  },
 });
 </script>
 
@@ -74,13 +84,13 @@ export default defineComponent({
   padding: 0px;
   gap: 10px;
   position: absolute;
-  height: 48px;
+  height: 3.5vh;
   left: 0px;
   right: 0px;
   top: 0px;
   .toolbar-container-inner {
     width: 100%;
-    height: 48px;
+    height: 3.5vh;
     background: #fcfcfc;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     flex: none;
@@ -101,7 +111,7 @@ export default defineComponent({
         flex-direction: row;
         justify-content: space-around;
         padding: 12px;
-        flex-basis: 8%;
+        flex-basis: 10%;
         svg {
           margin-top: 3px;
         }

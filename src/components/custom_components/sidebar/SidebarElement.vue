@@ -24,7 +24,7 @@ export default defineComponent({
 
 <style lang="scss">
 .sidebar-list-elem-container {
-  //   border: 1px solid green;
+  // border: 1px solid green;
   position: relative;
   width: 100%;
   padding: 1.1vh 1vw;

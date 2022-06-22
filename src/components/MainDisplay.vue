@@ -1,8 +1,8 @@
 <template>
   <div class="main-site">
-    <Toolbar />
-    <Sidebar />
-    <Scene />
+    <Toolbar @toggleSidebar="toggleSidebar" />
+    <Sidebar v-if="openSidebar" />
+    <Scene :openSidebar="openSidebar" />
   </div>
 </template>
 
@@ -10,14 +10,25 @@
 import { Toolbar } from "./custom_components/toolbar/";
 import { Sidebar } from "./custom_components/sidebar/";
 import { Scene } from "./custom_components/scene/";
-export default {
+import { defineComponent } from "vue";
+export default defineComponent({
   name: "MainDisplay",
   components: {
     Scene,
     Sidebar,
     Toolbar,
   },
-};
+  data() {
+    return {
+      openSidebar: true,
+    };
+  },
+  methods: {
+    toggleSidebar() {
+      this.openSidebar = !this.openSidebar;
+    },
+  },
+});
 </script>
 
 <style lang="scss">

@@ -3,3 +3,31 @@
   padding: 0;
   border: 0;
 }
+html {
+  font-size: 8px !important;
+}
+@media only screen and (min-width: 2100px) {
+  html {
+    font-size: 12px !important;
+  }
+}
+@media only screen and (min-width: 3100px) {
+  html {
+    font-size: 14px !important;
+  }
+}
+@media only screen and (min-width: 4100px) {
+  html {
+    font-size: 18px !important;
+  }
+}
+@media only screen and (min-width: 5100px) {
+  html {
+    font-size: 20px !important;
+  }
+}
+@media only screen and (min-width: 6100px) {
+  html {
+    font-size: 22px !important;
+  }
+}
