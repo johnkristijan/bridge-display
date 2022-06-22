@@ -3,7 +3,13 @@
     <div class="subscene-container" id="subscene-1">
       <iframe src="https://dev.m-link.no" width="800px" height="600px"></iframe>
     </div>
-    <div class="subscene-container" id="subscene-2"></div>
+    <div class="subscene-container" id="subscene-2">
+      <iframe
+        src="http://fuelsaver.demo.mlink.no/#/"
+        width="800px"
+        height="600px"
+      ></iframe>
+    </div>
     <div class="subscene-container" id="subscene-3"></div>
     <div class="subscene-container" id="subscene-4"></div>
   </div>
