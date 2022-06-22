@@ -1,7 +1,7 @@
 <template>
   <div class="scene-container">
     <div class="subscene-container" id="subscene-1">
-      <iframe src="https://dev.m-link.no/"></iframe>
+      <iframe src="https://dev.m-link.no" width="800px" height="600px"></iframe>
     </div>
     <div class="subscene-container" id="subscene-2"></div>
     <div class="subscene-container" id="subscene-3"></div>
