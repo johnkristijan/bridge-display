@@ -5,6 +5,7 @@
         v-for="listitem in listitems"
         :key="listitem.label"
         :SidebarElemProp="listitem"
+        :selectedScenesConfig="selectedScenesConfig"
       />
     </div>
     <div class="sidebar-footer">
@@ -14,11 +15,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "@vue/runtime-core";
+import { defineComponent, PropType } from "@vue/runtime-core";
 import SidebarElement from "./SidebarElement.vue";
 import SidebarFooter from "./SidebarFooter.vue";
 import { SidebarElementI } from "./SidebarInterfaces";
+import { ScenesConfigI } from "../scene/SceneInterfaces";
 export default defineComponent({
+  props: {
+    selectedScenesConfig: {
+      type: Object as PropType<ScenesConfigI>,
+      required: true,
+    },
+  },
   data() {
     return {
       listitems: [

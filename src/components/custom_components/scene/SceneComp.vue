@@ -5,31 +5,20 @@
     ></iframe> -->
   <!-- <div class="scene-container-multiple" :class="openSidebar && 'open-sidebar'"> -->
   <div class="scene-container-multiple" :class="openSidebar && 'open-sidebar'">
-    <div class="subscene-container" id="subscene-1">
-      <iframe
-        src="http://localhost:9000"
-        class="iframe-scene-multiple"
-      ></iframe>
+    <div
+      v-for="(scene, i) in selectedScenesConfig.multipleSceneList"
+      class="subscene-container subscene-2"
+      :key="`${i}-scene-multiple`"
+      :id="`subscene-${i}`"
+    >
+      <iframe :src="scene.iframeUrl" class="iframe-scene-multiple"></iframe>
     </div>
-    <div class="subscene-container" id="subscene-2">
-      <iframe
-        src="http://fuelsaver.demo.mlink.no/#/"
-        class="iframe-scene-multiple"
-      ></iframe>
-    </div>
-    <div class="subscene-container" id="subscene-3">
-      <iframe
-        src="http://localhost:9000"
-        class="iframe-scene-multiple"
-      ></iframe>
-    </div>
-    <div class="subscene-container" id="subscene-4"></div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-
+import { defineComponent, PropType } from "vue";
+import { ScenesConfigI } from "../scene/SceneInterfaces";
 export default defineComponent({
   name: "SceneComponent",
   props: {
@@ -37,6 +26,7 @@ export default defineComponent({
       type: Boolean,
       required: true,
     },
+    selectedScenesConfig: Object as PropType<ScenesConfigI>,
   },
   data() {
     return {

@@ -1,16 +1,23 @@
 <template>
-  <div class="sidebar-list-elem-container">
-    <div class="sidebar-elem-padding-div"></div>
-    <div class="sidebar-icon-div">
-      <font-awesome-icon icon="plus-circle" />
+  <div style="width: 100%">
+    <div class="sidebar-list-elem-container">
+      <div class="sidebar-elem-padding-div"></div>
+      <div class="sidebar-icon-div">
+        <font-awesome-icon icon="plus-circle" />
+      </div>
+      <div class="sidebar-elem-label-div">{{ SidebarElemProp.label }}</div>
     </div>
-    <div class="sidebar-elem-label-div">{{ SidebarElemProp.label }}</div>
+    <SidebarElementOpen
+      v-if="openlort"
+      :selectedScenesConfig="selectedScenesConfig"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { SidebarElementI } from "./SidebarInterfaces";
 import { defineComponent, PropType } from "@vue/runtime-core";
+import SidebarElementOpen from "./SidebarElementOpen.vue";
 
 export default defineComponent({
   props: {
@@ -18,6 +25,18 @@ export default defineComponent({
       type: Object as PropType<SidebarElementI>,
       required: true,
     },
+    selectedScenesConfig: {
+      type: Object as PropType<SidebarElementI>,
+      required: true,
+    },
+  },
+  components: {
+    SidebarElementOpen,
+  },
+  data() {
+    return {
+      openlort: true,
+    };
   },
 });
 </script>
