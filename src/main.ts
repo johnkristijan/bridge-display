@@ -19,6 +19,8 @@ import {
   faTriangleExclamation,
   faGear,
   faQuestionCircle,
+  faAngleRight,
+  faAngleDown,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faBars,
@@ -31,7 +33,9 @@ library.add(
   faPlusCircle,
   faTriangleExclamation,
   faGear,
-  faQuestionCircle
+  faQuestionCircle,
+  faAngleRight,
+  faAngleDown
 );
 // End Fontawesome setup
 createApp(App)

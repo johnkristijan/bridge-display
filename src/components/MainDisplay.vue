@@ -1,7 +1,11 @@
 <template>
   <div class="main-site">
-    <Toolbar @toggleSidebar="toggleSidebar" />
-    <Sidebar v-if="openSidebar" :selectedScenesConfig="selectedScenesConfig" />
+    <Toolbar @toggleSidebar="toggleSidebar" @toggleMultiple="toggleMultiple" />
+    <Sidebar
+      v-if="openSidebar"
+      :selectedScenesConfig="selectedScenesConfig"
+      @selectScene="selectScene"
+    />
     <Scene
       :openSidebar="openSidebar"
       :selectedScenesConfig="selectedScenesConfig"
@@ -15,6 +19,9 @@ import { Sidebar } from "./custom_components/sidebar/";
 import { Scene } from "./custom_components/scene/";
 import { defineComponent } from "vue";
 import { MainDisplayData } from "./MainDisplayInterfaces";
+import { SceneI } from "./custom_components/scene/SceneInterfaces";
+import { SidebarElementSceneSelectI } from "./custom_components/sidebar/SidebarInterfaces";
+
 export default defineComponent({
   name: "MainDisplay",
   components: {
@@ -30,17 +37,17 @@ export default defineComponent({
         multipleSceneList: [
           {
             iframeUrl: "http://localhost:9000",
-            option: "Mlink",
+            option: "Monitor",
             iframesOptions: {},
           },
           {
             iframeUrl: "http://localhost:9000",
-            option: "Mlink",
+            option: "Conning",
             iframesOptions: {},
           },
           {
             iframeUrl: "http://localhost:9000",
-            option: "Mlink",
+            option: "Analytics",
             iframesOptions: {},
           },
           {
@@ -60,6 +67,91 @@ export default defineComponent({
   methods: {
     toggleSidebar() {
       this.openSidebar = !this.openSidebar;
+    },
+    toggleMultiple() {
+      this.selectedScenesConfig.type =
+        this.selectedScenesConfig.type === "multiple" ? "single" : "multiple";
+    },
+    selectScene(elem: any) {
+      if (elem.multiple) {
+        let tempMultiple: SceneI[] =
+          this.selectedScenesConfig.multipleSceneList;
+        const alreadyExist = tempMultiple.findIndex(
+          (sceneElem) => sceneElem.option === elem.scene.label
+        );
+        // Finnes allerede og bytter plass
+        if (alreadyExist !== -1) {
+          const tempScene = tempMultiple[alreadyExist];
+          const replacedScene = tempMultiple[elem.index];
+          tempMultiple[alreadyExist] = replacedScene;
+          tempMultiple[elem.index] = tempScene;
+          this.selectedScenesConfig.multipleSceneList = tempMultiple;
+          this.selectedScenesConfig.type = "multiple";
+          return;
+        }
+        const decidedScene = this.sceneDecider(elem);
+        tempMultiple[elem.index] = decidedScene;
+        this.selectedScenesConfig.multipleSceneList = tempMultiple;
+        this.selectedScenesConfig.type = "multiple";
+      } else {
+        const decidedScene = this.sceneDecider(elem);
+        this.selectedScenesConfig.singleScene = decidedScene;
+        this.selectedScenesConfig.type = "single";
+      }
+    },
+    sceneDecider(scene: SidebarElementSceneSelectI): SceneI {
+      let decidedScene: SceneI = {
+        iframeUrl: "",
+        option: "",
+      };
+      switch (scene.scene.label.toUpperCase()) {
+        case "RADAR":
+          decidedScene = {
+            iframeUrl: "",
+            option: "Radar",
+            iframesOptions: {},
+          };
+          break;
+        case "ECDIS":
+          decidedScene = {
+            iframeUrl: "",
+            option: "ECDIS",
+            iframesOptions: {},
+          };
+          break;
+        case "CONNING":
+          decidedScene = {
+            iframeUrl: "",
+            option: "Conning",
+            iframesOptions: {},
+          };
+          break;
+        case "FUELSAVER":
+          decidedScene = {
+            iframeUrl: "http://fuelsaver.demo.mlink.no/#/",
+            option: "Fuelsaver",
+            iframesOptions: {},
+          };
+          break;
+        case "MONITOR":
+          decidedScene = {
+            iframeUrl: "http://localhost:9000",
+            option: "Monitor",
+            iframesOptions: {},
+          };
+          break;
+
+        case "ANALYTICS":
+          decidedScene = {
+            iframeUrl: "http://localhost:9000",
+            option: "Analytics",
+            iframesOptions: {},
+          };
+          break;
+        default:
+          break;
+      }
+      return decidedScene;
     },
   },
 });

@@ -5,3 +5,8 @@ export interface SidebarElementI {
   warningcount?: number;
   warningcolor?: string;
 }
+export interface SidebarElementSceneSelectI {
+  multiple: boolean;
+  scene: SidebarElementI;
+  index?: Number;
+}

@@ -17,7 +17,10 @@
           :key="`${elem}-${i}`"
           :style="i === 0 ? 'margin-left: auto' : ''"
         >
-          <ToolbarIcon :toolbarIconProps="elem" />
+          <ToolbarIcon
+            :toolbarIconProps="elem"
+            @click="topBarElemClick(elem)"
+          />
         </li>
       </ul>
     </div>
@@ -55,7 +58,7 @@ export default defineComponent({
           id: "topbar-elem-3",
         },
         {
-          label: "profile",
+          label: "tiles",
           iconsrc: "border-all",
           id: "topbar-elem-4",
         },
@@ -70,6 +73,9 @@ export default defineComponent({
     topBarElemClick(toolbarButton: ToolbarIconI) {
       if (toolbarButton.label === "expand-sidebar") {
         this.$emit("toggleSidebar");
+      }
+      if (toolbarButton.label === "tiles") {
+        this.$emit("toggleMultiple");
       }
     },
   },

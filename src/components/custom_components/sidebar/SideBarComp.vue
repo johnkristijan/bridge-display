@@ -6,6 +6,8 @@
         :key="listitem.label"
         :SidebarElemProp="listitem"
         :selectedScenesConfig="selectedScenesConfig"
+        @selectScene="selectScene"
+        @openSidebarElem="openSidebarElem"
       />
     </div>
     <div class="sidebar-footer">
@@ -44,11 +46,15 @@ export default defineComponent({
           open: false,
         },
         {
-          label: "FuelSaver",
+          label: "Fuelsaver",
           open: false,
         },
         {
           label: "Monitor",
+          open: false,
+        },
+        {
+          label: "Analytics",
           open: false,
         },
       ] as SidebarElementI[],
@@ -58,28 +64,37 @@ export default defineComponent({
     SidebarElement,
     SidebarFooter,
   },
+  methods: {
+    selectScene(elem: any) {
+      this.$emit("selectScene", elem);
+    },
+    openSidebarElem(sidebarElem: SidebarElementI) {
+      this.listitems.forEach((elem) => {
+        elem.open = false;
+      });
+      const index = this.listitems.findIndex(
+        (elem) => elem.label === sidebarElem.label
+      );
+      this.listitems[index].open = !sidebarElem.open;
+    },
+  },
 });
 </script>
 
 <style lang="scss">
 .sidepanel-container {
-  /* Navigation menu */
-  /* Size and position */
   position: absolute;
   width: calc(100vw - 82vw);
   min-width: 340px;
   left: 0px;
   top: 3.5vh;
   bottom: 0px;
-  /* end Size and position */
   transition: all 0.5s;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.3);
   border-radius: 0px 0px 2px 2px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  // border: 2px dashed darkblue;
-  /* Item List */
   .sidebar-element-list {
     margin-top: 1vh;
     display: flex;
@@ -87,7 +102,6 @@ export default defineComponent({
     align-items: flex-start;
     padding: 0px;
     width: 100%;
-    // height: 384px;
     left: 0px;
     top: 0px;
   }
