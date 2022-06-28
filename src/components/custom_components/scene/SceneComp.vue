@@ -6,7 +6,7 @@
   >
     <div
       v-for="(scene, i) in selectedScenesConfig.multipleSceneList"
-      class="subscene-container subscene-2"
+      class="subscene-container"
       :key="`${i}-scene-multiple`"
       :id="`subscene-${i}`"
     >
@@ -19,7 +19,7 @@
     :class="openSidebar && 'open-sidebar'"
   >
     <iframe
-      :src="selectedScenesConfig.singleScene.iframeUrl"
+      :src="`${selectedScenesConfig.singleScene.iframeUrl}`"
       class="iframe-scene-single"
     ></iframe>
   </div>
@@ -46,6 +46,7 @@ export default defineComponent({
       multipleScreens: false,
     };
   },
+  methods: {},
 });
 </script>
 
@@ -85,11 +86,13 @@ export default defineComponent({
       border: 0;
       padding: 0;
     }
+    @media (max-width: 1920px) {
+      $zoom: 1.45;
+    }
   }
 }
 // Single scene styling
 .scene-container-single {
-  border: 1px solid red;
   top: 3.5vh;
   right: 0;
   height: calc(100% - 48px);
@@ -111,6 +114,7 @@ export default defineComponent({
     margin: 0;
     border: 0;
     padding: 0;
+    overflow: hidden;
   }
 }
 </style>
