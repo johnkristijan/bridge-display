@@ -36,6 +36,10 @@ export default defineComponent({
           label: "ECDIS",
           open: false,
         },
+        {
+          label: "IAS",
+          open: false,
+        },
 
         {
           label: "Radar",

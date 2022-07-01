@@ -1,11 +1,17 @@
 <template>
   <div class="main-site">
-    <Toolbar @toggleSidebar="toggleSidebar" @toggleMultiple="toggleMultiple" />
+    <Toolbar
+      @toggleSidebar="toggleSidebar"
+      @toggleMultiple="toggleMultiple"
+      @toggleDarkmode="toggleDarkmode"
+      :darkMode="darkMode"
+    />
     <Sidebar
       v-if="openSidebar"
       :selectedScenesConfig="selectedScenesConfig"
       @selectScene="selectScene"
     />
+    <!-- :darkMode="darkMode" lortpeis -->
     <Scene
       :openSidebar="openSidebar"
       :selectedScenesConfig="selectedScenesConfig"
@@ -32,6 +38,7 @@ export default defineComponent({
   data(): MainDisplayData {
     return {
       openSidebar: true,
+      darkMode: false,
       selectedScenesConfig: {
         type: "multiple",
         multipleSceneList: [
@@ -39,32 +46,40 @@ export default defineComponent({
             iframeUrl: "http://localhost:9000",
             option: "Monitor",
             iframesOptions: {},
+            isIframe: true,
           },
           {
-            iframeUrl: "http://localhost:9000",
+            iframeUrl: "",
             option: "Conning",
             iframesOptions: {},
+            isIframe: false,
           },
           {
             iframeUrl: "http://localhost:9000",
             option: "Analytics",
             iframesOptions: {},
+            isIframe: true,
           },
           {
             iframeUrl: "http://fuelsaver.demo.mlink.no/#/",
             option: "Fuelsaver",
             iframesOptions: {},
+            isIframe: true,
           },
         ],
         singleScene: {
           iframeUrl: "http://fuelsaver.demo.mlink.no/#/",
           option: "Fuelsaver",
           iframesOptions: "",
+          isIframe: true,
         },
       },
     };
   },
   methods: {
+    toggleDarkmode() {
+      this.darkMode = !this.darkMode;
+    },
     toggleSidebar() {
       this.openSidebar = !this.openSidebar;
     },
@@ -103,6 +118,7 @@ export default defineComponent({
       let decidedScene: SceneI = {
         iframeUrl: "",
         option: "",
+        isIframe: false,
       };
       switch (scene.scene.label.toUpperCase()) {
         case "RADAR":
@@ -110,6 +126,7 @@ export default defineComponent({
             iframeUrl: "",
             option: "Radar",
             iframesOptions: {},
+            isIframe: false,
           };
           break;
         case "ECDIS":
@@ -117,6 +134,7 @@ export default defineComponent({
             iframeUrl: "",
             option: "ECDIS",
             iframesOptions: {},
+            isIframe: false,
           };
           break;
         case "CONNING":
@@ -124,6 +142,7 @@ export default defineComponent({
             iframeUrl: "",
             option: "Conning",
             iframesOptions: {},
+            isIframe: false,
           };
           break;
         case "FUELSAVER":
@@ -131,6 +150,7 @@ export default defineComponent({
             iframeUrl: "http://fuelsaver.demo.mlink.no/#/",
             option: "Fuelsaver",
             iframesOptions: {},
+            isIframe: true,
           };
           break;
         case "MONITOR":
@@ -138,6 +158,7 @@ export default defineComponent({
             iframeUrl: "http://localhost:9000",
             option: "Monitor",
             iframesOptions: {},
+            isIframe: true,
           };
           break;
 
@@ -146,6 +167,7 @@ export default defineComponent({
             iframeUrl: "http://localhost:9000",
             option: "Analytics",
             iframesOptions: {},
+            isIframe: true,
           };
           break;
         default:
@@ -159,7 +181,6 @@ export default defineComponent({
 
 <style lang="scss">
 .main-site {
-  // border: 1px solid red;
   position: relative;
   min-width: 1920px;
   min-height: 1040px;

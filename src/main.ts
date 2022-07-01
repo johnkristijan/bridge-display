@@ -21,6 +21,9 @@ import {
   faQuestionCircle,
   faAngleRight,
   faAngleDown,
+  faClock,
+  faEllipsis,
+  faCalendarDays,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   faBars,
@@ -35,7 +38,10 @@ library.add(
   faGear,
   faQuestionCircle,
   faAngleRight,
-  faAngleDown
+  faAngleDown,
+  faClock,
+  faEllipsis,
+  faCalendarDays
 );
 // End Fontawesome setup
 createApp(App)

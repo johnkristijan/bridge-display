@@ -1,21 +1,31 @@
 <template>
   <div class="dropdown-container">
-    <div
-      class="type-regular-openfrom-top293595-type-regular-openfrom-top293595"
-    >
+    <div class="selected-elem-dropdown-container">
       <div class="selected-elem-dropdown">
         <button
           class="selected-elem-button"
           @click="openCustomDropdown = !openCustomDropdown"
         >
-          <span class="type-regular-openfrom-top293595-text uIBody">{{
-            selectedItem
-          }}</span>
-          <div class="arrow-icon-wrapper">
+          <span
+            class="dropdown-text-button-container uIBody"
+            :class="
+              selectedScenesConfig.type === 'multiple' && 'multiple-styling'
+            "
+            >{{ selectedItem }}</span
+          >
+          <div
+            class="arrow-icon-wrapper"
+            :class="
+              selectedScenesConfig.type === 'multiple' && 'multiple-styling'
+            "
+          >
             <img
-              alt="UnionI293488292148292067"
+              alt="arrow"
               src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTAnIGhlaWdodD0nNScgdmlld0JveD0nMCAwIDEwIDUnIGZpbGw9J25vbmUnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+CjxwYXRoIGQ9J00wIDBMNSA1TDEwIDBIMFonIGZpbGw9J2JsYWNrJyBmaWxsLW9wYWNpdHk9JzAuNScvPgo8L3N2Zz4K"
               class="arrow-icon"
+              :class="
+                selectedScenesConfig.type === 'multiple' && 'multiple-styling'
+              "
             />
           </div>
         </button>
@@ -32,7 +42,7 @@
             <div
               class="type-regular-openfrom-top293595-frame-master-regular-i293492292516"
             >
-              <span class="type-regular-openfrom-top293595-text5 uIBody">
+              <span class="dropdown-text-button-container uIBody">
                 {{ item }}
               </span>
             </div>
@@ -43,9 +53,18 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from "@vue/runtime-core";
+import { ScenesConfigI } from "../scene/SceneInterfaces";
+
+export default defineComponent({
   name: "DropdownCustom",
+  props: {
+    selectedScenesConfig: {
+      type: Object as PropType<ScenesConfigI>,
+      required: true,
+    },
+  },
   data() {
     return {
       items: ["GPS 1", "Item 2", "Item 3", "Item 4"],
@@ -53,19 +72,18 @@ export default {
       openCustomDropdown: false,
     };
   },
-};
+});
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .dropdown-container {
   height: fit-content;
   width: fit-content;
   color: #eaeaea;
 }
-.type-regular-openfrom-top293595-type-regular-openfrom-top293595 {
+.selected-elem-dropdown-container {
   color: #eaeaea !important;
   background-color: #595959;
-  width: 104px;
   display: flex;
   position: relative;
   box-sizing: border-box;
@@ -87,7 +105,7 @@ export default {
 .selected-elem-button {
   color: #eaeaea !important;
   display: flex;
-  padding: 4px 4px 4px 16px;
+  padding: 4px 4px 4px 8px;
   position: relative;
   align-self: stretch;
   box-sizing: border-box;
@@ -99,33 +117,49 @@ export default {
   background-color: var(--dl-color-normal-enabledbackgroundcolor9723d);
   cursor: pointer;
 }
-.type-regular-openfrom-top293595-text {
+.dropdown-text-button-container {
   color: var(--dl-color-onnormal-activecolorabb53);
-  width: 52px;
+  width: 5vw;
   height: auto;
   margin: 0 8px 0 0;
   flex-grow: 1;
   align-self: auto;
   text-align: left;
-  line-height: 24px;
   text-decoration: none;
+  line-height: 4rem;
+  font-size: 3rem;
+  &.multiple-styling {
+    width: 2vw !important;
+    line-height: 1.7rem;
+    font-size: 1.3rem;
+  }
 }
 .arrow-icon-wrapper {
-  width: 24px;
-  height: 24px;
+  width: 4rem;
+  height: 4rem;
   display: flex;
   position: relative;
   box-sizing: border-box;
   align-items: flex-start;
   border-color: transparent;
+  &.multiple-styling {
+    width: 2rem;
+    height: 2rem;
+  }
 }
 .arrow-icon {
-  top: 10px;
+  top: 15px;
   left: 7px;
-  width: 10;
-  height: 5;
+  width: 2rem;
+  height: 2rem;
   position: absolute;
   color: #eaeaea !important;
+  &.multiple-styling {
+    top: 10px;
+    left: 7px;
+    width: 0.5vw;
+    height: 0.5vh;
+  }
 }
 .type-regular-openfrom-top293595-listitems293524 {
   display: flex;
@@ -162,17 +196,7 @@ export default {
   border-radius: 6px;
   background-color: var(--dl-color-flat-enabledbackgroundcolor6934d);
 }
-.type-regular-openfrom-top293595-text1 {
-  top: 4px;
-  left: 8px;
-  color: var(--dl-color-onflat-activecolorf1b28);
-  height: auto;
-  position: absolute;
-  align-self: auto;
-  text-align: left;
-  line-height: 24px;
-  text-decoration: none;
-}
+
 .type-regular-openfrom-top293595-dropdown-option-items293541 {
   display: flex;
   padding: 8px 0;
@@ -198,17 +222,7 @@ export default {
   border-radius: 6px;
   background-color: var(--dl-color-flat-enabledbackgroundcolor6934d);
 }
-.type-regular-openfrom-top293595-text2 {
-  top: 4px;
-  left: 8px;
-  color: var(--dl-color-onflat-activecolorf1b28);
-  height: auto;
-  position: absolute;
-  align-self: auto;
-  text-align: left;
-  line-height: 24px;
-  text-decoration: none;
-}
+
 .type-regular-openfrom-top293595-dropdown-option-items293490 {
   display: flex;
   padding: 8px 0;
@@ -234,17 +248,7 @@ export default {
   border-radius: 6px;
   background-color: var(--dl-color-flat-enabledbackgroundcolor6934d);
 }
-.type-regular-openfrom-top293595-text3 {
-  top: 4px;
-  left: 8px;
-  color: var(--dl-color-onflat-activecolorf1b28);
-  height: auto;
-  position: absolute;
-  align-self: auto;
-  text-align: left;
-  line-height: 24px;
-  text-decoration: none;
-}
+
 .type-regular-openfrom-top293595-dropdown-option-items293491 {
   display: flex;
   padding: 8px 0;
@@ -280,18 +284,7 @@ export default {
   align-items: flex-start;
   border-color: transparent;
 }
-.type-regular-openfrom-top293595-text4 {
-  top: 4px;
-  left: 8px;
-  color: var(--dl-color-onflat-activecolorf1b28);
-  width: 60px;
-  height: auto;
-  position: absolute;
-  align-self: auto;
-  text-align: left;
-  line-height: 24px;
-  text-decoration: none;
-}
+
 .type-regular-openfrom-top293595-dropdown-option-items293492 {
   display: flex;
   padding: 8px 0;
@@ -316,16 +309,5 @@ export default {
   border-color: transparent;
   border-radius: 6px;
   background-color: var(--dl-color-flat-enabledbackgroundcolor6934d);
-}
-.type-regular-openfrom-top293595-text5 {
-  top: 4px;
-  left: 8px;
-  color: var(--dl-color-onflat-activecolorf1b28);
-  height: auto;
-  position: absolute;
-  align-self: auto;
-  text-align: left;
-  line-height: 24px;
-  text-decoration: none;
 }
 </style>

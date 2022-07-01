@@ -58,7 +58,6 @@ export default defineComponent({
 
 <style lang="scss">
 .sidebar-list-elem-container {
-  // border: 1px solid green;
   position: relative;
   width: 100%;
   padding: 1.1vh 1vw;
@@ -71,7 +70,6 @@ export default defineComponent({
   cursor: pointer;
   transition: all 0.3s;
   .sidebar-elem-padding-div {
-    // border: 1px solid red;
     align-self: stretch;
     flex-basis: 15%;
   }

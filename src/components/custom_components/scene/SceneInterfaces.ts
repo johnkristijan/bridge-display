@@ -4,7 +4,8 @@ export interface ScenesConfigI {
   singleScene: SceneI;
 }
 export interface SceneI {
-  iframeUrl: string;
+  iframeUrl?: string;
   option: string;
   iframesOptions?: unknown;
+  isIframe: Boolean;
 }
