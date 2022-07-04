@@ -15,6 +15,10 @@ export default defineComponent({
       type: Object as PropType<ToolbarIconI>,
       required: true,
     },
+    darkmode: {
+      type: Boolean,
+      required: true,
+    },
   },
 });
 </script>
