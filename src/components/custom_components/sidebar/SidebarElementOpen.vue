@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-element-open">
+  <div class="sidebar-element-open" :class="darkMode ? 'darkmode' : ''">
     <div class="sidebar-element-open-inner">
       <div class="sidebar-multiple-scenes">
         <div
@@ -36,6 +36,10 @@ export default defineComponent({
     },
     SidebarElemProp: {
       type: Object as PropType<SidebarElementI>,
+      required: true,
+    },
+    darkMode: {
+      type: Boolean,
       required: true,
     },
   },
@@ -111,6 +115,11 @@ export default defineComponent({
       transition: all 0.3s;
       &:hover {
         transform: scale(1.1);
+      }
+      .darkmode & {
+        background-color: #404040;
+        color: #efefef;
+        font-weight: 700;
       }
     }
     .sidebar-single-scene {

@@ -16,6 +16,7 @@
       :selectedScenesConfig="selectedScenesConfig"
       :SidebarElemProp="SidebarElemProp"
       @selectScene="selectScene"
+      :darkMode="darkMode"
     />
   </div>
 </template>
@@ -34,6 +35,10 @@ export default defineComponent({
     },
     selectedScenesConfig: {
       type: Object as PropType<ScenesConfigI>,
+      required: true,
+    },
+    darkMode: {
+      type: Boolean,
       required: true,
     },
   },

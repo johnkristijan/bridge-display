@@ -16,7 +16,7 @@
       <img
         src="moenlogo.png"
         alt="moen marin logo"
-        style="width: 100%; height: auto"
+        style="width: 100%; height: auto; background-color: white"
       />
     </div>
   </div>

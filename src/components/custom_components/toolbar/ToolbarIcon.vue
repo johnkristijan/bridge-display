@@ -1,5 +1,5 @@
 <template>
-  <div class="toolbar-icon-container">
+  <div class="toolbar-icon-container" :class="darkMode ? 'darkmodeticon' : ''">
     <font-awesome-icon :icon="toolbarIconProps.iconsrc" size="3x" />
   </div>
 </template>
@@ -15,7 +15,7 @@ export default defineComponent({
       type: Object as PropType<ToolbarIconI>,
       required: true,
     },
-    darkmode: {
+    darkMode: {
       type: Boolean,
       required: true,
     },
@@ -26,6 +26,14 @@ export default defineComponent({
 <style lang="scss">
 .toolbar-icon-container {
   cursor: pointer;
+  transition: transform 0.3s;
+  &:hover {
+    transform: scale(1.2);
+  }
+}
+.darkmodeticon {
+  cursor: pointer;
+  color: #33bbff;
   transition: transform 0.3s;
   &:hover {
     transform: scale(1.2);

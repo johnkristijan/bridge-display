@@ -10,11 +10,13 @@
       v-if="openSidebar"
       :selectedScenesConfig="selectedScenesConfig"
       @selectScene="selectScene"
+      :darkMode="darkMode"
     />
     <!-- :darkMode="darkMode" lortpeis -->
     <Scene
       :openSidebar="openSidebar"
       :selectedScenesConfig="selectedScenesConfig"
+      :darkMode="darkMode"
     />
   </div>
 </template>

@@ -148,10 +148,11 @@ export default defineComponent({
   left: 0px;
   right: 0px;
   top: 0px;
+
   .toolbar-container-inner {
     width: 100%;
     height: 3.5vh;
-    background-color: #9f9f9f;
+    background-color: #333333;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     flex: none;
     order: 0;
@@ -167,6 +168,7 @@ export default defineComponent({
         flex-basis: 3%;
       }
       .logo-list-item {
+        color: #33bbff;
         display: flex;
         flex-direction: row;
         justify-content: space-around;
