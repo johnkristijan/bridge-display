@@ -1,6 +1,6 @@
 <template>
   <div>
-    <MainDisplay />
+    <MainDisplay :darkMode="darkMode" />
   </div>
 </template>
 
@@ -13,4 +13,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss"></style>

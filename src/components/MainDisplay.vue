@@ -80,7 +80,16 @@ export default defineComponent({
   },
   methods: {
     toggleDarkmode() {
+      console.log("halla");
       this.darkMode = !this.darkMode;
+      const body = document.getElementsByTagName("body");
+      if (this.darkMode) {
+        console.log(body[0]);
+        body[0].style.setProperty("background-color", "#404040");
+      } else {
+        body[0].style.setProperty("background-color", "#efefef");
+        console.log(body[0]);
+      }
     },
     toggleSidebar() {
       this.openSidebar = !this.openSidebar;

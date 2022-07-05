@@ -36,7 +36,7 @@
             courseOverGround="55"
             :northUp="true"
             setPoint="40"
-            heading="60"
+            heading="315"
           />
         </div>
       </div>

@@ -12,11 +12,11 @@
         </div>
       </div>
     </div>
-    <div class="sidebar-footer-logo">
+    <div class="sidebar-footer-logo" style="width: 100%">
       <img
-        src="moenlogo.png"
+        :src="darkMode ? 'moenlogodark.png' : 'moenlogo.png'"
         alt="moen marin logo"
-        style="width: 100%; height: auto; background-color: white"
+        style="width: 100%; height: auto"
       />
     </div>
   </div>
@@ -26,6 +26,12 @@
 import { defineComponent } from "@vue/runtime-core";
 
 export default defineComponent({
+  props: {
+    darkMode: {
+      type: Boolean,
+      required: true,
+    },
+  },
   data() {
     return {
       footerList: [

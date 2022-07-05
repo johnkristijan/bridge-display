@@ -12,7 +12,7 @@
       />
     </div>
     <div class="sidebar-footer">
-      <SidebarFooter />
+      <SidebarFooter :darkMode="darkMode" />
     </div>
   </div>
 </template>
