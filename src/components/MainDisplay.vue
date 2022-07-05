@@ -45,7 +45,7 @@ export default defineComponent({
         type: "multiple",
         multipleSceneList: [
           {
-            iframeUrl: "http://localhost:9000/#/openbridgemap",
+            iframeUrl: "http://localhost:9000/#/openbridgedashboard",
             option: "Monitor",
             iframesOptions: {},
             isIframe: true,
@@ -57,7 +57,7 @@ export default defineComponent({
             isIframe: false,
           },
           {
-            iframeUrl: "http://localhost:9000/#/openbridgedashboard",
+            iframeUrl: "http://localhost:9000/#/openbridgemap",
             option: "Analytics",
             iframesOptions: {},
             isIframe: true,
