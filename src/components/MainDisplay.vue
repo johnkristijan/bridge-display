@@ -12,7 +12,6 @@
       @selectScene="selectScene"
       :darkMode="darkMode"
     />
-    <!-- :darkMode="darkMode" lortpeis -->
     <Scene
       :openSidebar="openSidebar"
       :selectedScenesConfig="selectedScenesConfig"
@@ -51,10 +50,10 @@ export default defineComponent({
             isIframe: true,
           },
           {
-            iframeUrl: "",
-            option: "Conning",
+            iframeUrl: "https://192.168.1.240",
+            option: "IAS",
             iframesOptions: {},
-            isIframe: false,
+            isIframe: true,
           },
           {
             iframeUrl: "http://localhost:9000/#/openbridgemap",
@@ -136,6 +135,14 @@ export default defineComponent({
           decidedScene = {
             iframeUrl: "",
             option: "Radar",
+            iframesOptions: {},
+            isIframe: false,
+          };
+          break;
+        case "IAS":
+          decidedScene = {
+            iframeUrl: "http://192.168.1.221/webvisu/webvisu.htm",
+            option: "IAS",
             iframesOptions: {},
             isIframe: false,
           };
