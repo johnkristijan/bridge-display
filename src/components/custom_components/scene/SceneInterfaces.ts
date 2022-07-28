@@ -8,4 +8,6 @@ export interface SceneI {
   option: string;
   iframesOptions?: unknown;
   isIframe: Boolean;
+  isHDMI: Boolean;
+  HDMIUrl?: string;
 }

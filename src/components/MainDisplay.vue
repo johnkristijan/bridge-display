@@ -28,6 +28,7 @@ import { defineComponent } from "vue";
 import { MainDisplayData } from "./MainDisplayInterfaces";
 import { SceneI } from "./custom_components/scene/SceneInterfaces";
 import { SidebarElementSceneSelectI } from "./custom_components/sidebar/SidebarInterfaces";
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons";
 
 export default defineComponent({
   name: "MainDisplay",
@@ -39,7 +40,7 @@ export default defineComponent({
   data(): MainDisplayData {
     return {
       openSidebar: true,
-      darkMode: false,
+      darkMode: true,
       selectedScenesConfig: {
         type: "multiple",
         multipleSceneList: [
@@ -48,24 +49,28 @@ export default defineComponent({
             option: "Monitor",
             iframesOptions: {},
             isIframe: true,
+            isHDMI: false,
           },
           {
-            iframeUrl: "https://192.168.1.240",
+            iframeUrl: "https://192.168.1.240/webvisu/webvisu.htm",
             option: "IAS",
             iframesOptions: {},
             isIframe: true,
+            isHDMI: false,
           },
           {
             iframeUrl: "http://localhost:9000/#/openbridgemap",
             option: "Analytics",
             iframesOptions: {},
             isIframe: true,
+            isHDMI: false,
           },
           {
             iframeUrl: "http://fuelsaver.demo.mlink.no/#/",
             option: "Fuelsaver",
             iframesOptions: {},
             isIframe: true,
+            isHDMI: false,
           },
         ],
         singleScene: {
@@ -73,6 +78,7 @@ export default defineComponent({
           option: "Fuelsaver",
           iframesOptions: "",
           isIframe: true,
+          isHDMI: false,
         },
       },
     };
@@ -129,6 +135,7 @@ export default defineComponent({
         iframeUrl: "",
         option: "",
         isIframe: false,
+        isHDMI: false,
       };
       switch (scene.scene.label.toUpperCase()) {
         case "RADAR":
@@ -137,6 +144,8 @@ export default defineComponent({
             option: "Radar",
             iframesOptions: {},
             isIframe: false,
+            isHDMI: true,
+            HDMIUrl: "stream1",
           };
           break;
         case "IAS":
@@ -145,6 +154,7 @@ export default defineComponent({
             option: "IAS",
             iframesOptions: {},
             isIframe: false,
+            isHDMI: false,
           };
           break;
         case "ECDIS":
@@ -153,6 +163,8 @@ export default defineComponent({
             option: "ECDIS",
             iframesOptions: {},
             isIframe: false,
+            isHDMI: true,
+            HDMIUrl: "stream2",
           };
           break;
         case "CONNING":
@@ -161,6 +173,7 @@ export default defineComponent({
             option: "Conning",
             iframesOptions: {},
             isIframe: false,
+            isHDMI: false,
           };
           break;
         case "FUELSAVER":
@@ -169,6 +182,7 @@ export default defineComponent({
             option: "Fuelsaver",
             iframesOptions: {},
             isIframe: true,
+            isHDMI: false,
           };
           break;
         case "MONITOR":
@@ -177,6 +191,7 @@ export default defineComponent({
             option: "Monitor",
             iframesOptions: {},
             isIframe: true,
+            isHDMI: false,
           };
           break;
 
@@ -186,6 +201,7 @@ export default defineComponent({
             option: "Analytics",
             iframesOptions: {},
             isIframe: true,
+            isHDMI: false,
           };
           break;
         default:

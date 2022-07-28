@@ -15,6 +15,22 @@
         :src="scene.iframeUrl"
         class="iframe-scene-multiple"
       ></iframe>
+      <video
+        v-else-if="scene.isHDMI && scene.HDMIUrl === 'stream1'"
+        class="full-hd"
+        :src-object.prop.camel="stream1"
+        autoplay
+      >
+        &nbsp;
+      </video>
+      <video
+        v-else-if="scene.isHDMI && scene.HDMIUrl === 'stream2'"
+        class="full-hd"
+        :src-object.prop.camel="stream2"
+        autoplay
+      >
+        &nbsp;
+      </video>
       <div v-else style="height: 100%; width: 100%">
         <div
           v-if="scene.option.toUpperCase() === 'CONNING'"
@@ -40,6 +56,28 @@
       :src="`${selectedScenesConfig.singleScene.iframeUrl}`"
       class="iframe-scene-single"
     ></iframe>
+    <video
+      v-else-if="
+        selectedScenesConfig.singleScene.isHDMI &&
+        selectedScenesConfig.singleScene.HDMIUrl === 'stream1'
+      "
+      class="ultra-hd"
+      :src-object.prop.camel="stream1"
+      autoplay
+    >
+      &nbsp;
+    </video>
+    <video
+      v-else-if="
+        selectedScenesConfig.singleScene.isHDMI &&
+        selectedScenesConfig.singleScene.HDMIUrl === 'stream2'
+      "
+      class="ultra-hd"
+      :src-object.prop.camel="stream2"
+      autoplay
+    >
+      &nbsp;
+    </video>
     <div v-else style="height: 100%; width: 100%; height: 100%">
       <div
         v-if="
@@ -80,11 +118,49 @@ export default defineComponent({
     return {
       sceneFrames: [],
       multipleScreens: false,
+      stream1: null as any,
+      stream2: null as any,
     };
   },
   methods: {},
+  async mounted() {
+    // use this method to show ID's of the available devices (cameras, streams, etc.)
+    const devs = await navigator.mediaDevices.enumerateDevices();
+    console.log("devs: ", devs);
+
+    const avioStream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        deviceId:
+          "a25625050854bbcaba73d10cf7fd74c0de8d35cf3d21e969ebd3813b26af9943",
+        // width: 1920,
+        // height: 1080,
+      },
+    });
+    this.stream1 = avioStream;
+
+    const webcamStream = await navigator.mediaDevices.getUserMedia({
+      video: {
+        deviceId:
+          "c099ebc4975b6de6e482240ec0077f7ffd04ffbd6e71e600bc1d17550ee0fea4",
+        // width: 1920,
+        // height: 1080,
+      },
+    });
+    this.stream2 = webcamStream;
+  },
 });
 </script>
+
+<style>
+.full-hd {
+  width: 1920px;
+  height: 1080px;
+}
+.ultra-hd {
+  width: 3840px;
+  height: 2160px;
+}
+</style>
 
 <style lang="scss" scoped>
 // Multiple scenes styling
@@ -109,7 +185,7 @@ export default defineComponent({
   //  1px solid hotpink;
 
   .subscene-container {
-    border: 3px dashed rgb(155, 155, 155);
+    //border: 3px dashed rgb(155, 155, 155); Gjort av Jørgen
     border-radius: 5px;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.3);
     display: flex;
